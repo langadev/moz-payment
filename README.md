@@ -1,10 +1,10 @@
-# 💳 Payment Service
+# Payment Service
 
 > Sistema de pagamentos resiliente para Moçambique — construído com **Spring Boot 3**, **PostgreSQL** e **RabbitMQ**.
 
 ---
 
-## 📑 Índice
+##  Índice
 
 - [Requisitos](#-requisitos)
 - [Execução local](#-execução-local)
@@ -17,19 +17,19 @@
 
 ---
 
-## ✅ Requisitos
+##  Requisitos
 
 | Ferramenta | Versão mínima |
 |:---|:---:|
-| ☕ Java | `17` |
-| 🔧 Maven | `3.9+` *(ou use o `mvnw` incluído)* |
-| 🐳 Docker | `24+` |
-| 🐳 Docker Compose | `v2` |
-| ☸️ kubectl | `1.28+` *(para deploy K8s)* |
+|  Java | `17` |
+|  Maven | `3.9+` *(ou use o `mvnw` incluído)* |
+|  Docker | `24+` |
+|  Docker Compose | `v2` |
+|  kubectl | `1.28+` *(para deploy K8s)* |
 
 ---
 
-## 🚀 Execução local
+##  Execução local
 
 ### 1. Subir infraestrutura (PostgreSQL + RabbitMQ)
 
@@ -43,7 +43,7 @@ docker compose up -d postgres rabbitmq
 ./mvnw spring-boot:run
 ```
 
-> 🌐 A aplicação estará disponível em `http://localhost:8080`
+> A aplicação estará disponível em `http://localhost:8080`
 
 ### 3. Tudo de uma vez (app + infra)
 
@@ -53,9 +53,9 @@ docker compose up -d
 
 ---
 
-## 🔌 Endpoints
+##  Endpoints
 
-### ➕ Criar pagamento
+###  Criar pagamento
 
 ```bash
 curl -X POST http://localhost:8080/api/v1/payments \
@@ -81,11 +81,11 @@ curl -X POST http://localhost:8080/api/v1/payments \
 }
 ```
 
-> 💡 **Idempotência:** Reenviar o mesmo `idempotencyKey` retorna `200 OK` com o pagamento original — sem duplicação.
+>  **Idempotência:** Reenviar o mesmo `idempotencyKey` retorna `200 OK` com o pagamento original — sem duplicação.
 
 ---
 
-### 🔍 Consultar pagamento
+###  Consultar pagamento
 
 ```bash
 curl http://localhost:8080/api/v1/payments/{id}
@@ -93,7 +93,7 @@ curl http://localhost:8080/api/v1/payments/{id}
 
 ---
 
-### 🔔 Webhook do provedor
+###  Webhook do provedor
 
 ```bash
 curl -X POST http://localhost:8080/webhooks/provider \
@@ -108,7 +108,7 @@ curl -X POST http://localhost:8080/webhooks/provider \
 
 ---
 
-### 📖 Swagger UI
+###  Swagger UI
 
 ```
 http://localhost:8080/swagger-ui.html
@@ -116,7 +116,7 @@ http://localhost:8080/swagger-ui.html
 
 ---
 
-## 🧪 Testes
+##  Testes
 
 ### Testes unitários
 
@@ -130,7 +130,7 @@ http://localhost:8080/swagger-ui.html
 ./mvnw verify -Dtest="PaymentIntegrationTest"
 ```
 
-> ⚙️ Os testes de integração usam **Testcontainers** — sobem automaticamente PostgreSQL e RabbitMQ em containers Docker durante a execução.
+>  Os testes de integração usam **Testcontainers** — sobem automaticamente PostgreSQL e RabbitMQ em containers Docker durante a execução.
 
 ### Todos os testes
 
@@ -140,7 +140,7 @@ http://localhost:8080/swagger-ui.html
 
 ---
 
-## 🐳 Docker
+##  Docker
 
 ### Build da imagem
 
@@ -162,7 +162,7 @@ docker run -p 8080:8080 \
 
 ---
 
-## ☸️ Kubernetes
+##  Kubernetes
 
 ### Pré-requisitos
 
@@ -195,21 +195,21 @@ kubectl logs -l app=payment-service -n payments -f
 
 ---
 
-## 📊 Observabilidade
+##  Observabilidade
 
 | Endpoint | Descrição |
 |:---|:---|
 | `GET /actuator/health` | Health check *(liveness/readiness)* |
 | `GET /actuator/prometheus` | Métricas no formato Prometheus |
 
-### 📈 Métricas disponíveis
+###  Métricas disponíveis
 
 | Métrica | Descrição |
 |:---|:---|
 | `payments_created_total` | Total de pagamentos processados com sucesso pelo provedor |
 | `payments_provider_failed_total` | Total de falhas permanentes do provedor |
 
-### 🪵 Logs estruturados *(produção)*
+###  Logs estruturados *(produção)*
 
 Activar o profile `prod` para logs em JSON *(formato Logstash)*:
 
@@ -219,11 +219,11 @@ java -jar app.jar --spring.profiles.active=prod
 
 ---
 
-## 🏗️ Arquitectura
+##  Arquitectura
 
 > Ver [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) para o diagrama completo e descrição dos componentes.
 
-### 📋 ADRs *(Architecture Decision Records)*
+###  ADRs *(Architecture Decision Records)*
 
 | ADR | Decisão |
 |:---|:---|
@@ -233,7 +233,7 @@ java -jar app.jar --spring.profiles.active=prod
 
 ---
 
-## 🔄 Ciclo de vida do pagamento
+##  Ciclo de vida do pagamento
 
 ```
 PENDING ──→ PROCESSING ──→ COMPLETED
