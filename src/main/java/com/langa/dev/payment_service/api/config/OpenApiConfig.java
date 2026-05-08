@@ -15,7 +15,7 @@ import java.util.List;
 @Configuration
 public class OpenApiConfig {
 
-    @Value("${app.base-url:http://localhost:8080}")
+    @Value("${app.base-url:https://moz-payment.onrender.com}")
     private String baseUrl;
 
     @Bean
@@ -46,12 +46,12 @@ public class OpenApiConfig {
                         .version("1.0.0")
                         .contact(new Contact()
                                 .name("Langa Dev")
-                                .email("agrolink.dev1@gmail.com"))
+                                .email("alfredolanga360@gmail.com"))
                         .license(new License()
                                 .name("MIT")))
                 .servers(List.of(
                         new Server().url(baseUrl).description("Servidor atual"),
-                        new Server().url("http://localhost:8080").description("Local")
+                        new Server().url("https://moz-payment.onrender.com").description("Local")
                 ))
                 .tags(List.of(
                         new Tag().name("Payments").description("Criação e consulta de pagamentos"),
