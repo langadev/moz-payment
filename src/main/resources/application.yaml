@@ -51,6 +51,9 @@ management:
     readinessstate:
       enabled: true
 
+app:
+  base-url: ${APP_BASE_URL:http://localhost:8080}
+
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
