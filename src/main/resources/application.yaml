@@ -16,9 +16,9 @@ spring:
           multiplier: 2.0
         acknowledge-mode: auto
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/payment_db}
-    username: ${SPRING_DATASOURCE_USERNAME:payment_user}
-    password: ${SPRING_DATASOURCE_PASSWORD:payment_secret}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://aws-0-eu-west-1.pooler.supabase.com:5432/postgres}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres.efzyetzqaglykuxhbvjm}
+    password: ${SPRING_DATASOURCE_PASSWORD:EkhGLi22PmU!!68}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
